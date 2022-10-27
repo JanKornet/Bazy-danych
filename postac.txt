@@ -1,0 +1,5 @@
+create table postac (id integer primary key not null auto_increment, nazwa varchar (40), rodzaj enum ('wiking', 'ptak', 'kobieta'), data_ur date, wiek integer unsigned);
+insert into postac values (1,"bjorn", "wiking", '2022-10-27', 3000);
+insert into postac values (2,"drozd", "ptak", '2000-05-21', 3000);
+insert into postac values (3,"tesciowa", "kobieta", '1000-05-21', 42185);
+update postac set wiek=88 where imie="tesciowa";

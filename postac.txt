@@ -3,3 +3,13 @@ insert into postac values (1,"bjorn", "wiking", '2022-10-27', 3000);
 insert into postac values (2,"drozd", "ptak", '2000-05-21', 3000);
 insert into postac values (3,"tesciowa", "kobieta", '1000-05-21', 42185);
 update postac set wiek=88 where imie="tesciowa";
+create table walizka (id_walizki integer primary key not null auto_increment, pojemnosc integer unsigned, kolor enum('rozowy', 'czerwony', 'teczowy', 'zolty'), id_wlasciciela integer, foreign key(id_wlasciciela) references postac(id) on delete cascade);
+insert into walizka values (1, 45, 'rozowy', 1);
+insert into walizka values (2, 800, 'teczowy', 2);
+update walizka set kolor = "rozowy";
+
+create table izba(adres_budynku integer auto_increment, nazwa_izby varchar(40), metraz integer unsigned, wlasciciel integer, primary key(adres_budynku,nazwa_izby), foreign key(wlasciciel) references postac(id_postaci) on delete set null);
+alter table izba add column kolor_izby varchar(20) default 'czarny' after metraz;
+insert into izba values ('1','spizarnia','8',default,'1');
+
+create table przetwory(id_przetworu int primary key, rok_produkcji year default (1654),id_wykonawcy int, foreign key(id_wykonawcy) references postac(id), zawartosc varchar(40), dodatek varchar(40) default "papryczka chilli", id_konsumenta int, foreign key(id_konsumenta) references postac(id));
